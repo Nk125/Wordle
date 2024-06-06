@@ -15,5 +15,5 @@ namespace self::config {
 	/*
 	 * @brief Total attempts allowed to guess the word
 	 */
-	size_t word_guess_attempts = 6;
+	const size_t word_guess_attempts = 6;
 }

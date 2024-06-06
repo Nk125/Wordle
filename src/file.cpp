@@ -11,6 +11,10 @@ std::optional<std::string> self::file::read_file(std::string_view filepath) {
 
 	size_t fileSize = file.tellg();
 
+	if (fileSize <= 0) {
+		return std::nullopt;
+	}
+
 	file.seekg(0, std::ios::beg);
 
 	std::string outBuf;

@@ -21,5 +21,12 @@ namespace self {
 		 * @return The randomly selected word
 		 */
 		std::string select_random_word();
+
+		/*
+		 * @brief Check if the word is in the list
+		 * @param word The word to check
+		 * @return True if it's found in the list, false otherwise
+		 */
+		bool is_in_the_list(std::string_view);
 	};
 }

@@ -21,7 +21,7 @@ int main() {
 			file_content.value()
 		)
 	)) {
-		std::cerr << "Failed to load dict from the parsed dict";
+		std::cerr << "Failed to load dict from the parsed dict\n";
 		return 1;
 	}
 

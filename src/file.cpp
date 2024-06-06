@@ -2,12 +2,14 @@
 #include <fstream>
 
 std::optional<std::string> self::file::read_file(std::string_view filepath) {
-	std::ifstream file(std::string(filepath), std::ios::binary | std::ios::end);
+	std::ifstream file(std::string(filepath), std::ios::binary);
 
 	// Return if file doesn't exist or currently busy
 	if (!file.is_open()) {
 		return std::nullopt;
 	}
+
+	file.seekg(0, std::ios::end);
 
 	size_t fileSize = file.tellg();
 
@@ -15,9 +17,11 @@ std::optional<std::string> self::file::read_file(std::string_view filepath) {
 		return std::nullopt;
 	}
 
-	file.seekg(0, std::ios::beg);
+	file.seekg(std::ios::beg);
 
 	std::string outBuf;
+
+	outBuf.resize(fileSize);
 
 	file.read(&outBuf[0], fileSize);
 

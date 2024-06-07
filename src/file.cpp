@@ -2,7 +2,7 @@
 #include <fstream>
 
 std::optional<std::string> self::file::read_file(std::string_view filepath) {
-	std::ifstream file(std::string(filepath), std::ios::binary);
+	std::ifstream file(std::string{filepath.begin(), filepath.end()}, std::ios::binary);
 
 	// Return if file doesn't exist or currently busy
 	if (!file.is_open()) {

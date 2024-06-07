@@ -6,19 +6,17 @@
 self::dict_primitive self::parser::parse_dict(std::string_view rawdict) {
 	self::dict_primitive dict_prim;
 
-	size_t tokenOffset = 0, sepOff = 0, tokenLen = 0;
+	size_t tokenOffset = 0, sepOff = 0;
 	const size_t strfinish = std::string::npos;
-
-	std::string_view token;
 
 	while (sepOff != strfinish) {
 		// Tokenizing process
 
 	    sepOff = rawdict.find(config::delimiter, sepOff);
 
-	    tokenLen = (sepOff == strfinish) ? sepOff : sepOff++ - tokenOffset;
+	    size_t tokenLen = (sepOff == strfinish) ? sepOff : sepOff++ - tokenOffset;
 
-	    token = rawdict.substr(tokenOffset, tokenLen);
+	    std::string_view token = rawdict.substr(tokenOffset, tokenLen);
 
 		tokenOffset = sepOff;
 
@@ -26,11 +24,11 @@ self::dict_primitive self::parser::parse_dict(std::string_view rawdict) {
 
 	    if (token.empty()) continue;
 
-		token = normalizer::normalize(token);
+		std::string norm_token = normalizer::normalize(
+			filter::clean_word(token)
+		);
 
-		if (!filter::is_valid_word(token)) continue;
-
-		dict_prim.emplace_back(token);
+		dict_prim.push_back(norm_token);
 	}
 
 	return dict_prim;

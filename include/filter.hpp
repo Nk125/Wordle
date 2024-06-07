@@ -1,9 +1,12 @@
 #pragma once
+#include <string>
 #include <string_view>
 
 namespace self::filter {
 	/*
-	 * @brief Check if the word is valid
+	 * @brief Cleans the word of unwanted chars
+	 * @param word The word to be cleaned
+	 * @return The cleaned word
 	 */
-	bool is_valid_word(std::string_view);
+	std::string clean_word(std::string_view);
 }

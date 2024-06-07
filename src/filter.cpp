@@ -1,13 +1,15 @@
 #include <filter.hpp>
+#include <algorithm>
 
-bool self::filter::is_valid_word(std::string_view word) {
-	if (word.empty()) return false;
+std::string self::filter::clean_word(std::string_view word) {
+	std::string clean;
 
-	bool charsValid = true;
+	std::for_each(word.begin(), word.end(), 
+	[&clean](char c) {
+		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+			clean += c;
+		}
+	});
 
-	for (char c : word) {
-		charsValid = (c >= 'A' && c <= 'Z') && charsValid;
-	}
-
-	return charsValid;
+	return clean;
 }

@@ -1,6 +1,6 @@
 ## Wordle
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > This is still WIP, when goes out of WIP, this notice will be removed
 
 A simple console-based wordle, inspired by [La palabra del día](https://lapalabradeldia.com)
